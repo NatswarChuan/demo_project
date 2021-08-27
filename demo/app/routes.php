@@ -18,3 +18,13 @@ $router->get('/tin-tuc', 'NewsController@index');
 $router->get('/tin-tuc/trang-{page}', 'NewsController@index');
 
 $router->get('/tin-tuc/{id}', 'NewsController@getNews');
+
+$router->post('/tim-kiem', 'ProductController@searchProducts');
+$router->post('/tim-kiem/trang-{page}', 'ProductController@searchProducts');
+$router->get('/tim-kiem', 'ProductController@searchProducts');
+$router->get('/tim-kiem/trang-{page}', 'ProductController@searchProducts');
+
+$router->get('/gio-hang', 'ProductController@cartProducts');
+$router->get('/add-to-cart/{id}', 'ProductController@addToCart');
+
+$router->post('/check-out', 'ProductController@checkOut');

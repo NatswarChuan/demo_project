@@ -78,11 +78,64 @@ class TienIch
 
     static function updateViews($post)
     {
-        session_start();
         if (empty($_SESSION['view-' . $post['post_id']])) {
             $postModel = new PostModel();
             $_SESSION['view-' . $post['post_id']] = 1;
             $postModel->updateViews($post['post_id'], ($post['post_view'] + 1), $post['last_update']);
         }
+    }
+
+    static function checkCart($product, $cart)
+    {
+        $result = false;
+        foreach ($cart as $item) {
+            if ($product['post_id'] == $item['post_id']) {
+                $result = true;
+                break;
+            }
+        }
+        return $result;
+    }
+
+    static function getTotalPrice($cart)
+    {
+        $result = 0;
+        foreach ($cart as $item) {
+            $result += $item['product_price'];
+        }
+        return $result;
+    }
+
+    static function get_client_ip()
+    {
+        $ipaddress = '';
+        if (getenv('HTTP_CLIENT_IP')) {
+            $ipaddress = getenv('HTTP_CLIENT_IP');
+        } else if (getenv('HTTP_X_FORWARDED_FOR')) {
+            $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+        } else if (getenv('HTTP_X_FORWARDED')) {
+            $ipaddress = getenv('HTTP_X_FORWARDED');
+        } else if (getenv('HTTP_FORWARDED_FOR')) {
+            $ipaddress = getenv('HTTP_FORWARDED_FOR');
+        } else if (getenv('HTTP_FORWARDED')) {
+            $ipaddress = getenv('HTTP_FORWARDED');
+        } else if (getenv('REMOTE_ADDR')) {
+            $ipaddress = getenv('REMOTE_ADDR');
+        } else {
+
+            $ipaddress = 'UNKNOWN';
+        }
+
+        return $ipaddress;
+    }
+
+    static function getProductIdCart($cart){
+        $result = '';
+        $products = [];
+        foreach ($cart as $item) {
+            $products = array_merge($products,[$_POST["quantityPrice".$item['post_id']]]);  
+        }
+        $result = implode(',', $products);
+        return $result;
     }
 }

@@ -61,4 +61,21 @@ class ProductModel extends Db
         $sql->bind_param('i', $id);
         return parent::select($sql)[0]['COUNT(`posts`.`post_id`)'];
     }
+
+    public function getProductsSearch($search,$page, $perPage)
+    {
+        $start = $perPage * ($page - 1);
+        $search = "%$search%";
+        $sql = parent::$conection->prepare("SELECT * FROM `products` JOIN `posts` on `posts`.`post_id` = `products`.`post_id` WHERE`status` = 1 AND `posts`.`post_title` LIKE ? ORDER BY `posts`.`post_date` DESC LIMIT ?,?");
+        $sql->bind_param('sii',$search, $start, $perPage);
+        return parent::select($sql);
+    }
+
+    public function getCountProductsSearch($search)
+    {
+        $search = "%$search%";
+        $sql = parent::$conection->prepare("SELECT COUNT(`posts`.`post_id`) FROM `products` JOIN `posts` on `posts`.`post_id` = `products`.`post_id` JOIN `companies` on `companies`.`company_id` = `products`.`company_id` WHERE `posts`.`post_title` LIKE ? AND `status` = 1 ORDER BY `posts`.`post_date`");
+        $sql->bind_param('s', $search);
+        return parent::select($sql)[0]['COUNT(`posts`.`post_id`)'];
+    }
 }

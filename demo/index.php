@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 define("ROOT_URL", __DIR__);
 define("BASE_URL", "http://127.0.0.1/demo_project/demo");
 

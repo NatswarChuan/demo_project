@@ -33,7 +33,7 @@
                                 <div class="rating"><img src="<?php echo BASE_URL ?>/assets/img/star.svg"><img src="<?php echo BASE_URL ?>/assets/img/star.svg"><img src="<?php echo BASE_URL ?>/assets/img/star.svg"><img src="<?php echo BASE_URL ?>/assets/img/star-half-empty.svg"><img src="<?php echo BASE_URL ?>/assets/img/star-empty.svg"></div>
                                 <div class="price">
                                     <h3><?php echo $product['product_price'] ?></h3>
-                                </div><button class="btn btn-primary" type="button"><i class="icon-basket"></i>Add to Cart</button>
+                                </div><button onclick="window.location.href='<?php echo BASE_URL .'/add-to-cart/'.$product['post_id']?>'"class="btn btn-primary" type="button"><i class="icon-basket"></i>Add to Cart</button>
                                 <div class="summary">
                                     <p><?php echo $product['post_sub_description'] ?></p>
                                 </div>
