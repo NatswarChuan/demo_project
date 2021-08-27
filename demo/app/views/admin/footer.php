@@ -7,7 +7,7 @@
 <script src="<?php echo BASE_URL ?>/assets/admin/js/theme.js"></script>
 <script src="<?php echo BASE_URL ?>/assets/ckeditor/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace( 'editor1', {
+    CKEDITOR.replace( 'editor', {
     filebrowserBrowseUrl: '<?php echo BASE_URL ?>/assets/ckfinder/ckfinder.html',
     filebrowserUploadUrl: '<?php echo BASE_URL ?>/assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
 } );
