@@ -28,3 +28,10 @@ $router->get('/gio-hang', 'ProductController@cartProducts');
 $router->get('/add-to-cart/{id}', 'ProductController@addToCart');
 
 $router->post('/check-out', 'ProductController@checkOut');
+
+$router->get('/admin/', 'HomeController@admin');
+$router->get('/admin', 'HomeController@admin');
+
+$router->get('/admin/dang-nhap', 'UserController@login');
+
+$router->post('/admin/check-user', 'UserController@checkUser');
